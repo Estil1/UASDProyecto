@@ -42,7 +42,7 @@ const Navbar = () => {
           className="btn btn-ghost p-0"
           style={{ maxWidth: "300px", maxHeight: "200px" }}
         />
-        <h1 className="text-lg font-bold mx-4"></h1>
+        <h1 className="text-lg font-bold mx-4"> </h1>
       </div>
       <div className="flex-none">
         {/* Toggle button here */}
