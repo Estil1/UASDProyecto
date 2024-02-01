@@ -23,6 +23,9 @@ const Hero = () => {
       Horario: materia.Horario,
       Días: materia.Días,
       Aula: materia.Aula,
+      Clave: materia.Clave,
+      Sección: materia.Sección,
+      Modalidad: materia.Modalidad,
     }));
 
     setSuggestedMaterias(uniqueSubjects);
@@ -70,8 +73,8 @@ const Hero = () => {
               />
               <datalist id="materias-list">
                 {suggestedMaterias.map((materia) => (
-                  <option key={materia.NRC} value={materia.NRC}>
-                    {`${materia.Asignatura} | ${materia.Campus} | ${materia.Horario} | ${materia.Días} | ${materia.Aula}`}
+                  <option key={materia.NRC} value={`${materia.NRC} - ${materia.Clave}`}>
+                    {`${materia.Asignatura} | ${materia.Campus} | ${materia.Modalidad} | ${materia.Horario} | ${materia.Días} | ${materia.Aula}`}
                   </option>
                 ))}
               </datalist>
