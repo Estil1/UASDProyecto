@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import data24 from '../schedules/24.json'; // Ajusta la ruta según tu estructura de carpetas
+import data24 from '../schedules/24.json';
+
+const MateriaSeleccionada = ({ materia, onRemove }) => (
+  <div className="flex justify-between items-center mb-1 p-2">
+    <span>{materia}</span>
+    <button className="btn btn-error ml-2" onClick={onRemove}>
+      Quitar
+    </button>
+  </div>
+);
 
 const Hero = () => {
   const [selectedMaterias, setSelectedMaterias] = useState([]);
@@ -7,15 +16,10 @@ const Hero = () => {
   const [suggestedMaterias, setSuggestedMaterias] = useState([]);
 
   useEffect(() => {
-    // Obtén la lista única de asignaturas del JSON
-    const uniqueSubjects = data24.map(materia => ({
+    const uniqueSubjects = data24.map((materia) => ({
       NRC: materia.NRC,
-      Clave: materia.Clave,
       Asignatura: materia.Asignatura,
-      Sección: materia.Sección,
-      Modalidad: materia.Modalidad,
       Campus: materia.Campus,
-      Tipo: materia.Tipo,
       Horario: materia.Horario,
       Días: materia.Días,
       Aula: materia.Aula,
@@ -41,7 +45,6 @@ const Hero = () => {
   };
 
   const handleSubmit = () => {
-    // Aquí puedes realizar alguna acción con las materias seleccionadas
     console.log('Materias seleccionadas:', selectedMaterias);
   };
 
@@ -63,11 +66,13 @@ const Hero = () => {
                 placeholder="Escribe tus materias..."
                 value={currentMateria}
                 onChange={handleInputChange}
-                list="materias-list" // Enlaza con el ID del datalist
+                list="materias-list"
               />
               <datalist id="materias-list">
                 {suggestedMaterias.map((materia) => (
-                  <option key={materia.NRC} value={`${materia.NRC} | ${materia.Clave} | ${materia.Asignatura} | ${materia.Sección} | ${materia.Modalidad} | ${materia.Campus} | ${materia.Tipo} | ${materia.Horario} | ${materia.Días} | ${materia.Aula}`} />
+                  <option key={materia.NRC} value={materia.NRC}>
+                    {`${materia.Asignatura} | ${materia.Campus} | ${materia.Horario} | ${materia.Días} | ${materia.Aula}`}
+                  </option>
                 ))}
               </datalist>
               <button
@@ -81,18 +86,11 @@ const Hero = () => {
             {selectedMaterias.length > 0 && (
               <div className={`mt-2 dark:bg-base-800 p-2 w-full`}>
                 {selectedMaterias.map((materia) => (
-                  <div
+                  <MateriaSeleccionada
                     key={materia}
-                    className="flex justify-between items-center mb-1 p-2"
-                  >
-                    <span>{materia}</span>
-                    <button
-                      className="btn btn-error ml-2"
-                      onClick={() => handleRemoveMateria(materia)}
-                    >
-                      Quitar
-                    </button>
-                  </div>
+                    materia={materia}
+                    onRemove={() => handleRemoveMateria(materia)}
+                  />
                 ))}
               </div>
             )}
