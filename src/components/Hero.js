@@ -73,8 +73,8 @@ const Hero = () => {
               />
               <datalist id="materias-list">
                 {suggestedMaterias.map((materia) => (
-                  <option key={materia.NRC} value={`${materia.NRC} - ${materia.Clave}`}>
-                    {`${materia.Asignatura} | ${materia.Campus} | ${materia.Modalidad} | ${materia.Horario} | ${materia.Días} | ${materia.Aula}`}
+                  <option key={materia.NRC} value={`${materia.NRC} - ${materia.Clave} - ${materia.Asignatura}`}>
+                    {`${materia.Campus} | ${materia.Modalidad} | ${materia.Horario} | ${materia.Días} | ${materia.Aula}`}
                   </option>
                 ))}
               </datalist>
