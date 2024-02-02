@@ -52,7 +52,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-200 dark:bg-base-900">
+    <div className="hero min-h-screen bg-base-200 dark:bg-base-900 flex justify-center items-center">
       <div className="text-center hero-content">
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">
@@ -63,21 +63,20 @@ const Hero = () => {
           </p>
           <div className="relative mb-5">
             <div className="flex items-center">
-              <input
-                type="text"
-                className="input input-primary w-full max-w-xs dark:bg-base-800"
-                placeholder="Escribe tus materias..."
+              <select
+                className="select select-bordered w-full max-w-xs"
                 value={currentMateria}
                 onChange={handleInputChange}
-                list="materias-list"
-              />
-              <datalist id="materias-list">
+              >
+                <option value="" disabled>
+                  Selecciona una materia
+                </option>
                 {suggestedMaterias.map((materia) => (
-                  <option key={materia.NRC} value={`${materia.NRC} - ${materia.Clave} - ${materia.Asignatura}`}>
-                    {`${materia.Campus} | ${materia.Modalidad} | ${materia.Horario} | ${materia.Días} | ${materia.Aula}`}
+                  <option key={materia.NRC} value={materia.Asignatura} >
+                    {materia.Asignatura}
                   </option>
                 ))}
-              </datalist>
+              </select>
               <button
                 className="btn btn-primary ml-2"
                 onClick={handleAddMateria}
