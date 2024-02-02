@@ -72,8 +72,8 @@ const Hero = () => {
                   Selecciona una materia
                 </option>
                 {suggestedMaterias.map((materia) => (
-                  <option key={materia.NRC} value={materia.Asignatura} >
-                    {materia.Asignatura}
+                  <option key={materia.NRC} value={`${materia.Asignatura} - ${materia.Clave} - ${materia.Asignatura}`} >
+                    {materia.Asignatura} {`${materia.Campus} ${materia.Horario} ${materia.Días} ${materia.Aula} ${materia.Clave} ${materia.Sección} ${materia.Modalidad}`}
                   </option>
                 ))}
               </select>
